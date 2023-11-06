@@ -1,0 +1,85 @@
+<mat-toolbar class="text-white sticky-top" style="background-color: #6d00ff;">
+    <button class="btn" aria-label="Example icon-button with menu icon">
+        <mat-icon (click)="this.sideNav.open()" *ngIf="!sideNav?.opened">menu</mat-icon>
+        <mat-icon (click)="this.sideNav.close()" *ngIf="sideNav?.opened">close</mat-icon>
+    </button>
+    <span class="fw-bold mx-auto">The News</span>
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" style="background-color: #E8DAFC;">
+        <div class="pt-3">
+            <img class="avatar img-thumbnail"
+                src="https://cdn4.vectorstock.com/i/thumb-large/50/08/news-alerts-breaking-logo-tv-design-element-vector-24575008.jpg"
+                alt="">
+            <h4 class="name text-black fw-bold">The News</h4>
+        </div>
+
+        <ng-container *ngFor=" let source of sources">
+            <div data-aos="flip-left" class="magnify">
+                <button (click)=" searchSource(source)" class="btn text-black menu-button"
+                    style="background-color: #E8DAFC;">
+                    <mat-icon>event_note</mat-icon>
+                    <span>{{source.name}}</span>
+                </button>
+            </div>
+        </ng-container>
+
+
+        <!-- <button class="btn btn-secoandry text-white menu-button">
+            <mat-icon>settings</mat-icon>
+            <span>Settings</span>
+        </button> -->
+    </mat-sidenav>
+    <mat-sidenav-content style="background-color: #E8DAFC;">
+        <section class="text-gray-600">
+            <div class="px-5 mx-auto mb-4">
+                <div class="mb-4 p-4">
+                    <h1 class="display-4 text-gray-900">{{selectedNewsChannel}}</h1>
+                    <div class="rounded h-1 w-25" style="background-color: #8E8FFA;"></div>
+                </div>
+                <div class="d-flex flex-wrap m-4 scroll-none">
+                    <ng-container *ngFor="let article of articles">
+                        <div class="col-xl-4 col-md-6 p-4">
+                            <div class="p-4">
+                                <div class="rounded-lg card1">
+                                    <div class="front rounded">
+                                        <div class="front-content">
+                                            <img class="mb-4 w-100"
+                                                [src]="article.urlToImage || '../assets/images/img.jpeg'" alt="News">
+                                            <div class="d-flex flex-col mb-2 p-4">
+                                                <h3 class="text-small font-weight-bold text-justify"
+                                                    style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                                    Author:
+                                                    {{article.author || 'NA'}}
+                                                </h3>
+                                                <h4 class="text-gray-800 text-small"
+                                                    style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                                    {{article.publishedAt | date:'medium'}}</h4>
+                                                <h3 class="text-lg text-gray-900 fw-bold mb-3">
+                                                    {{article.title+' ...'}}
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="back rounded ">
+                                        <div class="back-content rounded card1">
+                                            <img class="mb-4 w-100"
+                                                [src]="article.urlToImage || '../assets/images/img.jpeg'" alt="News">
+                                            <p class="fw-medium text-lg text-gray-900 p-3"
+                                                [innerHtml]="article.description.substring(0,150)+' ...' || 'Visit the page to see more details'">
+                                            </p>
+                                            <span class="mb-2 p-3"><a style="color: #5C4B99;" href="{{article.url}}"
+                                                    target="_blank">Read
+                                                    more....</a></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </section>
+    </mat-sidenav-content>
+</mat-sidenav-container>
