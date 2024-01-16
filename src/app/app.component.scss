@@ -1,0 +1,90 @@
+mat-sidenav {
+  width: 280px;
+  border-right: none;
+  text-align: center;
+}
+
+mat-toolbar button {
+  border: none;
+}
+
+mat-sidenav-container {
+  height: calc(100vh - 65px);
+}
+
+.avatar {
+  border-radius: 50%;
+  width: 110px;
+  height: 110px;
+  margin: 0 auto;
+}
+
+.magnify .btn {
+  cursor: pointer;
+  margin-right: 8px;
+  transition: all 0.2s;
+}
+
+.magnify .btn:hover {
+  margin-left: 10px;
+  transform: scale(0.95);
+  border: 2px solid #6d00ff;
+}
+
+section .magnify {
+  transition: all 0.5s;
+}
+
+section .magnify:hover {
+  transform: scale(1.1);
+  border-radius: 10px;
+  box-shadow: 6px 6px 20px 5px #9f91cc;
+}
+
+.menu-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+  margin: 10px 0;
+}
+
+.front,
+.back {
+  transition: transform 0.6s linear;
+  backface-visibility: hidden;
+  position: relative;
+  background-color: white;
+}
+
+.card1 {
+  height: 470px;
+}
+
+.front {
+  height: 470px;
+  transform: perspective(10000px) rotateY(0deg);
+}
+
+.back {
+  height: 470px;
+  background-color: transparent;
+  transform: perspective(10000px) rotateY(180deg);
+}
+
+.back-content {
+  position: relative;
+  transform: translate(0%, -100%);
+  width: 100%;
+  height: 100%;
+  background-color: white;
+}
+
+.card1:hover .front {
+  transform: perspective(10000px) rotateY(-180deg);
+}
+
+.card1:hover .back {
+  transform: perspective(10000px) rotateY(0deg);
+}
